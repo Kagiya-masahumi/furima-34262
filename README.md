@@ -8,7 +8,7 @@
 | --------              | ------  | -----------                  |
 | nickname              | string  | null: false                  |
 | email                 | string  | null: false,uniqueness: true |
-| encrypted_password    | string  | null: false,uniqueness: true |
+| encrypted_password    | string  | null: false                  |
 | name                  | string  | null: false                  |
 | name_kana             | string  | null: false                  |
 | family_name           | string  | null: false                  |
@@ -26,16 +26,17 @@
 
 ## items テーブル
 
-| Column       | Type      | Options                        |
-| --------     | ------    | -----------                    |
-| item_name    | string    | null: false                    |
-| status       | string    | null: false                    |
-| category     | reference | null: false, foreign_key: true |
-| item_explain | text      | null: false                    |
-| carry_date   | integer   | null: false                    |
-| postage      | integer   | null: false                    |
-| price        | integer   | null: false                    |
-| user         | reference | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| --------      | ------     | -----------                    |
+| name          | string     | null: false                    |
+| status_id     | integer    | null: false                    |
+| category_id   | integer    | null: false                    |
+| item_explain  | text       | null: false                    |
+| carry_date_id | integer    | null: false                    |
+| carry_area_id | integer    | null: false                    |
+| postage_id    | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -46,26 +47,6 @@
 - belongs_to :user
 - has_one :order
 
-
-## categories テーブル
-| Column        | Type   | Options      |
-| --------      | ------ | -----------  |
-| category_name | string | null: false  |
-| ancestry      | string |              |
-
-### Association
-- has_many :item
-
-
-
-## item_imageテーブル
-| column  | Type       | Options                        |
-| ------- | ------     | -------                        |
-| image   | string     | null: false                    |
-| item    | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to :item 
 
 
 
@@ -113,12 +94,3 @@
 
 - belongs_to :order
 - has_one :prefecture
-
-## prefectures テーブル
-| Column      | Type       | Options                        |
-| -------     | ---------- | ------------------------------ |
-| prefecture  | string     | null: false                    |
-
-- has_one :address
-
-
