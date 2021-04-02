@@ -4,16 +4,16 @@
 
 ## users テーブル
 
-| Column                | Type    | Options                      |
-| --------              | ------  | -----------                  |
-| nickname              | string  | null: false                  |
-| email                 | string  | null: false,uniqueness: true |
-| encrypted_password    | string  | null: false                  |
-| name                  | string  | null: false                  |
-| name_kana             | string  | null: false                  |
-| family_name           | string  | null: false                  |
-| family_name_kana      | string  | null: false                  |
-| birthday              | data    | null: false                  |
+| Column                | Type   | Options                      |
+| --------              | ------ | -----------                  |
+| nickname              | string | null: false                  |
+| email                 | string | null: false,uniqueness: true |
+| encrypted_password    | string | null: false                  |
+| name                  | string | null: false                  |
+| name_kana             | string | null: false                  |
+| family_name           | string | null: false                  |
+| family_name_kana      | string | null: false                  |
+| birthday              | data   | null: false                  |
 
 
 ### Association
@@ -42,11 +42,8 @@
 ### Association
 
 - has_many :comments, dependent: :destroy
-- has_many :item_images, dependent: :destroy
-- has_many :categories, dependent: :destroy
-- belongs_to :user
 - has_one :order
-
+- belongs_to :user
 
 
 
@@ -74,16 +71,16 @@
 
 ### Association
 
+- has_one :address
 - belongs_to :user
-- has_one :item
-- has_many :address
+- belongs_to :item
 
 ## addresses テーブル
 
 | Column      | Type       | Options                        |
 | -------     | ---------- | ------------------------------ |
 | postal_num  | string     | null: false                    |
-| prefectures | references | null: false, foreign_key: true |
+| prefectures | integer    | null: false                    |
 | city        | string     | null: false                    |
 | address     | string     | null: false                    |
 | building    | string     |                                |
@@ -93,4 +90,4 @@
 ### Association
 
 - belongs_to :order
-- has_one :prefecture
+
