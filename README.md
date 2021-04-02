@@ -13,13 +13,12 @@
 | name_kana             | string | null: false                  |
 | family_name           | string | null: false                  |
 | family_name_kana      | string | null: false                  |
-| birthday              | data   | null: false                  |
+| birthday              | date   | null: false                  |
 
 
 ### Association
 
 - has_many :items, dependent: :destroy
-- has_many :comments, dependent: :destroy
 - has_many :orders
 
 
@@ -41,24 +40,8 @@
 
 ### Association
 
-- has_many :comments, dependent: :destroy
 - has_one :order
 - belongs_to :user
-
-
-
-## comments テーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | text       |                                |
-| user    | references | null: false, foreign_key: true |
-| item    | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :item, through: :users
-- belongs_to :user, through: :items
 
 
 
