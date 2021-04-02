@@ -7,7 +7,7 @@
 | Column                | Type   | Options                      |
 | --------              | ------ | -----------                  |
 | nickname              | string | null: false                  |
-| email                 | string | null: false,uniqueness: true |
+| email                 | string | null: false,unique: true |
 | encrypted_password    | string | null: false                  |
 | name                  | string | null: false                  |
 | name_kana             | string | null: false                  |
@@ -63,7 +63,7 @@
 | Column      | Type       | Options                        |
 | -------     | ---------- | ------------------------------ |
 | postal_num  | string     | null: false                    |
-| prefectures | integer    | null: false                    |
+| prefecture  | integer    | null: false                    |
 | city        | string     | null: false                    |
 | address     | string     | null: false                    |
 | building    | string     |                                |
