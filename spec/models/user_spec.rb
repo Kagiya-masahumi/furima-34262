@@ -26,7 +26,6 @@ RSpec.describe User, type: :model do
       @user.save
       another_user = FactoryBot.build(:user, email:@user.email)
       another_user.valid?
-      binding.pry
       expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
 
