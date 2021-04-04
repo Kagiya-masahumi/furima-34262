@@ -19,7 +19,11 @@ RSpec.describe User, type: :model do
     end
 
     it 'メールアドレスが一意性であること' do
-
+      @user.save
+      another_user = FactoryBot.build(:user, email:@user.email)
+      another_user.valid?
+      binding.pry
+      expect(@user.errors.full_messages).to include("Email is already have")
     end
 
     it 'メールアドレスは、@を含む必要があること' do
