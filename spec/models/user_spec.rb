@@ -11,6 +11,10 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
 
+    it '登録に必要な情報が存在すれば登録できること' do
+      expect(@user).to be_valid
+    end
+
     it 'メールアドレスが空では登録できない' do
       @user.email = ''
       @user.valid?
@@ -23,7 +27,7 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user, email:@user.email)
       another_user.valid?
       binding.pry
-      expect(@user.errors.full_messages).to include("Email is already have")
+      expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
 
     it 'メールアドレスは、@を含む必要があること' do

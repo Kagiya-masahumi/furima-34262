@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
     
   validates :nickname,:birthday,presence: true 
-  validates :email, presence: true, uniqueness: true
+  #validates :email, presence: true, uniqueness: true
   validates_format_of :name_kana,:family_name_kana, presence: true,
                       with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'
   validates :password,
