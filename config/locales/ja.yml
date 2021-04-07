@@ -18,5 +18,5 @@ ja:
       carry_area_id: 発送元の地域
       carry_date_id: 発送までの日数
       postage_id: 配送料の負担
-      price_id: 販売価格
+      price: 販売価格
 
