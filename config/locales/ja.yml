@@ -1,12 +1,22 @@
 ja:
  activerecord:
    attributes:
-     user:
-       nickname: ニックネーム
-       email: メールアドレス
-       password: パスワード
-       name: お名前
-       family_name: ご名字
-       name_kana: お名前カナ(全角)
-       family_name_kana: ご名字カナ(全角)
-       birthday: 生年月日
+    user:
+      nickname: ニックネーム
+      email: メールアドレス
+      password: パスワード
+      name: お名前
+      family_name: ご名字
+      name_kana: お名前カナ(全角)
+      family_name_kana: ご名字カナ(全角)
+      birthday: 生年月日
+    item:
+      name: 商品名
+      explain: 商品説明文
+      status_id: 商品の状態
+      category_id: カテゴリー
+      carry_area_id: 発送元の地域
+      carry_date_id: 発送までの日数
+      postage_id: 配送料の負担
+      price_id: 販売価格
+
