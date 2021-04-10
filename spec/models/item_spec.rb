@@ -21,18 +21,10 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
 
-      it '入力された販売価格によって、販売手数料や販売利益の表示が変わること' do
-      end
-      
-
     end
 
 
     context '商品の出品ができない時' do
-      it 'ログアウト状態のユーザーは、商品出品ページへ遷移しようとすると、ログインページへ遷移すること' do
-        
-      end
-      
       it '商品画像がなければ登録できないこと' do
         @item.image = nil
         @item.valid?
