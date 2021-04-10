@@ -21,7 +21,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
 
-      it '必要な情報を適切に入力すると、商品情報がデータベースに保存されること' do 
+      it '入力された販売価格によって、販売手数料や販売利益の表示が変わること' do
       end
       
 
@@ -36,7 +36,6 @@ RSpec.describe Item, type: :model do
       it '商品画像がなければ登録できないこと' do
         @item.image = nil
         @item.valid?
-        binding.pry
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
 
