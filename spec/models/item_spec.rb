@@ -10,6 +10,11 @@ RSpec.describe Item, type: :model do
 
   describe '商品出品機能の実装' do
     context '商品の出品ができる時' do
+
+      it '全ての情報が正しく入力されていれば、出品できること' do
+        expect(@item).to be_valid
+      end
+
       
       it '販売価格は、¥300~¥9,999,999の間のみ登録可能であること' do
         @item.price = 10000
@@ -133,12 +138,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
 
         expect(@item.errors.full_messages).to include("Price is not a number")  
-      end
-
-      it '入力に問題がある状態で「出品する」ボタンが押された場合、情報は保存されず、出品ページに戻りエラーメッセージが表示されること' do 
-      end
-
-      it '1つのエラーに対して同じエラーメッセージが重複して表示されないこと' do 
       end
 
     end
