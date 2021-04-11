@@ -16,10 +16,10 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ 999,999,999
+        <%= "¥#{@item.price.to_s(:delimited, delimiter: ',')}" %>
       </span>
       <span class="item-postage">
-        <%= "配送料負担" %>
+        <%= @item.postage.name %>
       </span>
     </div>
 
@@ -28,7 +28,7 @@
       <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
-    <% elsif user_signed_in? %>
+    <% elsif user_signed_in? && current_user.id != @item.user_id %>
       <%# 商品が売れていない場合はこちらを表示しましょう %>
       <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
       <%# //商品が売れていない場合はこちらを表示しましょう %>
@@ -43,27 +43,27 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user.name %></td>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.category_id %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @item.status_id %></td>
+          <td class="detail-value"><%= @item.status.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.postage_id %></td>
+          <td class="detail-value"><%= @item.postage.name  %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @item.carry_area_id %></td>
+          <td class="detail-value"><%= @item.carry_area.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.carry_date_id %></td>
+          <td class="detail-value"><%= @item.carry_date.name  %></td>
         </tr>
       </tbody>
     </table>
