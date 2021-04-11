@@ -57,7 +57,7 @@ RSpec.describe "Items", type: :system do
         sign_in(@user)
         visit new_item_path
         @item.name = ''
-        expect {
+        expect{
         click_on '出品する'
         }.not_to change{ Item.count }
         expect(current_path).to eq(items_path)
