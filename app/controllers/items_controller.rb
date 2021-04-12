@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_item, only:[:show, :edit, :update]
+  before_action :block_out_page, only:[:edit, :update]
 
   def index
     @items = Item.all.order(id: "DESC")
@@ -19,7 +21,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(item_params)
+    else
+      render :edit
+    end
+
   end
 
 
@@ -38,5 +51,17 @@ class ItemsController < ApplicationController
                   :image)
           .merge(user_id: current_user.id)
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def block_out_page
+    if @item.user != current_user
+      redirect_to root_path
+    end
+  end
+
+
 
 end
