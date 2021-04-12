@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_item, only:[:show, :edit, :update, :destroy]
-  before_action :block_out_page, only:[:edit, :update]
+  before_action :block_out_page, only:[:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(id: "DESC")
