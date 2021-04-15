@@ -15,7 +15,7 @@ class User < ApplicationRecord
     validates :name
   end
 
-    #今後の実装に併せて順次使用のため
+    
     has_many :items, dependent: :destroy 
-    #has_many :orders
+    has_many :orders
 end
