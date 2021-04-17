@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :block_out_page
 
   def index
 
@@ -35,6 +36,13 @@ class OrdersController < ApplicationController
         card: order_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def block_out_page
+    @item = Item.find(params[:item_id])
+    if @item.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
 
