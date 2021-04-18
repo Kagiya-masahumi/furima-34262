@@ -19,31 +19,6 @@ RSpec.describe "OrderAddresses", type: :system do
         expect(current_path).to eq(item_orders_path(@another_item.id))
       end
 
-      it '必要な情報を適切に入力すると、商品購入情報が保存されること' do 
-        sign_in(@user)
-        binding.pry
-        item_order(@order_address)
-        allow(Payjp::Charge).to receive(:create).and_return(PayjpMock.prepare_valid_charge)
-        Payjp::Charge.create
-        #binding.pry
-        expect {
-          click_button '購入'
-        }.to change{ Order.count }.by(1)
-        expect(current_path).to eq(root_path)
-      end
-
-
-      it '正しく購入されていれば、トップページに遷移できること' do
-        sign_in(@user)
-        item_order(@order_address)
-        allow(Payjp::Charge).to receive(:create).and_return(PayjpMock.prepare_valid_charge)
-        Payjp::Charge.create
-        #binding.pry
-        expect {
-          click_on '購入'
-        }.to change{ Order.count }.by(1)
-        expect(current_path).to eq(root_path)
-      end
 
     end
 
