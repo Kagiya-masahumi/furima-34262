@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    id            {2}
+    id            {Faker::Number.number(1)}
     name          {"商品名"}
     explain       {"商品です"}
     status_id     {2}

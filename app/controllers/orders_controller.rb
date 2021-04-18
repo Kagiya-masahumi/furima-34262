@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
     if @order_address.valid?
       pay_item
-      @order_address.save
+      @order_address.save!
       redirect_to root_path
     else
       render :index
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
 
   def block_out_page
     @item = Item.find(params[:item_id])
-    if @item.user_id == current_user.id
+    if @item.user_id == current_user.id || @item.order.present?
       redirect_to root_path
     end
   end
