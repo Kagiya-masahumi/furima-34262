@@ -41,12 +41,12 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
 
-
       it 'postal_numが空だと購入できないこと' do
         @order_address.postal_num = ''
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Postal num can't be blank")
       end
+
       it 'postal_numが半角のハイフンを含んだ正しい形式でないと購入できないこと' do
         @order_address.postal_num = '1234567'
         @order_address.valid?
@@ -88,6 +88,13 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone num is invalid')
       end
+
+      it 'postal_numが英数字混合だと購入できないこと' do
+        @order_address.postal_num = '1a2b3c4d5e6'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Postal num is invalid. Include hyphen(-)")
+      end
+
     end
   end
 end

@@ -25,21 +25,20 @@
       </span>
     </div>
 
-    
-    <% if user_signed_in? && current_user.id == @item.user_id && @item.order.present? %>
-      
-    <% elsif user_signed_in? && current_user.id == @item.user_id  %>
-      <%= link_to "商品の編集", edit_item_path(@item.id) , class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
-    
-    <% else %>
-      <% if @item.order.nil? %>
+    <%# ログインユーザーかつ商品が未売却のとき %>
+    <% if user_signed_in? && @item.order.nil? %>  
+
+    <%# 上記を満たし、出品者であるとき%>
+      <% if user_signed_in? && current_user.id == @item.user_id  %>
+        <%= link_to "商品の編集", edit_item_path(@item.id) , class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
+      <%# 上記を満たし、出品者ではないとき%>
+      <% else %>
         <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
       <% end %>
-
+      
     <% end %>
-    
 
     <div class="item-explain-box">
       <span><%= @item.explain %></span>
