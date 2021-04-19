@@ -32,6 +32,10 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include SignInSupport
+  config.include PayjpMock
+  config.include ItemOrderSupport
+  config.include NewItemSupport
+
   Capybara.javascript_driver = :poltergeist
   
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

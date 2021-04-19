@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
   end
 
   def block_out_page
-    if @item.user != current_user
+    if @item.user != current_user || @item.order.present?
       redirect_to root_path
     end
   end
