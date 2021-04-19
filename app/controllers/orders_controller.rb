@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :block_out_page
   before_action :find_item, only:[:index, :create]
+  before_action :block_out_page
+  
 
 
   def index
@@ -38,7 +39,6 @@ class OrdersController < ApplicationController
   end
 
   def block_out_page
-    @item = Item.find(params[:item_id])
     if @item.user_id == current_user.id || @item.order.present?
       redirect_to root_path
     end
@@ -46,10 +46,6 @@ class OrdersController < ApplicationController
 
     def find_item
       @item = Item.find(params[:item_id])
-
     end
-
-
-
 
 end
