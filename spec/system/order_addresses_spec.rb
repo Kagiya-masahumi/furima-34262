@@ -19,6 +19,15 @@ RSpec.describe "OrderAddresses", type: :system do
         expect(current_path).to eq(item_orders_path(@another_item.id))
       end
 
+      it 'ログイン状態のユーザーのみ、商品購入ページへ遷移できること' do
+        sign_in(@user)
+        item_order(@another_item)
+        expect{
+          click_button '購入'
+        }.to change{ Order.count }.by(1)
+        expect(current_path).to eq(root_path)
+      end
+
 
     end
 
